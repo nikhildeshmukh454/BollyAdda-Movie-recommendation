@@ -6,7 +6,7 @@ from main1 import KNN  # Ensure 'knn' is correctly imported
 import re
 
 # Load dataset once when the server starts
-data = pd.read_csv("C:\\Users\\nikhil deshmukh\\Desktop\\RESUME_PROJECT\\movieRex\\IMDB-Movie-Dataset(2023-1951) (2).csv")
+data = pd.read_csv("IMDB-Movie-Dataset(2023-1951) (2).csv")
 data = data.dropna()
 
 # Initialize the Flask app
