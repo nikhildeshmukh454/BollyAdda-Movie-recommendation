@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    
+<style>
+    body{
+        background-image: href"{{ url_for('static', filename='background.jpg') }}";
+    }
+</style>
+</head>
+<body >
+    
+   <!-- <h1>FilmiFind: <small>Your Bollywood Buddy</small> </h1> -->
+
+   <div id="main">
+    <h1>BollyAdda: Decode Your Bollywood Essence</h1>
+    <p>Discover Your Next Favorite Movie</p>
+    <div class="button-container">
+        <button onclick="scrollToSection('BYMOVIE')">Get Movie Suggestions Based on Your Favorite Movie</button>
+        <button onclick="scrollToSection('BYTAG')">Discover Movie Suggestions by Different Tags</button>
+    </div>
+</div>
+
+
+<hr>
+<hr>
+<hr width="100%;" color="red" size="4">
+
+   <div id="BYTAG">     <h2 class="headline"> Discover Movie Suggestions by Different Tags   </h2> </div>
+   
+       <div class="button-container">
+        <button type="button" onclick="toggleInput('genreContainer')">Filter by Genre</button>
+        <button type="button" onclick="toggleInput('castContainer')">Filter by Cast</button>
+        <button type="button" onclick="toggleInput('directorContainer')">Filter by Director</button>
+    </div>
+    
+    <hr width="100%;" color="red" size="4">
+
+    
+    <form id="recommendationForm"  method="post"  action="/recommend" >
+        <h4 style="text-align: center;">  Select Multiple Types of Tags to Get the Perfect Choice</h4> 
+       
+
+
+        <div id="genreContainer" class="input-container">
+            <label for="genre">Favorite Genre:</label>
+            <select id="genre" name="genre">
+                <option value="none">Select Genre</option>
+               
+                <option value="Adventure">Adventure</option>
+                <option value="History">History</option>
+                <option value="Crime">Crime</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Sport">Sport</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Musical">Musical</option>
+                <option value="Animation">Animation</option>
+                <option value="Biography">Biography</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Romance">Romance</option>
+                <option value="Music">Music</option>
+                <option value="Family">Family</option>
+                <option value="Action">Action</option>
+                <option value="Thriller">Thriller</option>
+                <option value="War">War</option>
+                <option value="Drama">Drama</option>
+                <option value=" "> </option>
+                <option value="Horror">Horror</option>
+                
+            </select>            <button type="button" class="remove-btn" onclick="removeFilter('genre')">✖</button><br>
+        </div>
+        
+        <div id="castContainer" class="input-container">
+            <label for="cast">Favorite Cast:</label>
+            <select id="cast" name="cast">
+                <option value="None">Favorite Cast</option>
+    <option value="Amitabh Bachchan">Amitabh Bachchan</option>
+    <option value="Akshay Kumar">Akshay Kumar</option>
+    <option value="Salman Khan">Salman Khan</option>
+    <option value="Sanjay Dutt">Sanjay Dutt</option>
+    <option value="Shah Rukh Khan">Shah Rukh Khan</option>
+    <option value="Ajay Devgn">Ajay Devgn</option>
+    <option value="Paresh Rawal">Paresh Rawal</option>
+    <option value="Anupam Kher">Anupam Kher</option>
+    <option value="Jackie Shroff">Jackie Shroff</option>
+    <option value="Anil Kapoor">Anil Kapoor</option>
+    <option value="Saif Ali Khan">Saif Ali Khan</option>
+    <option value="Kareena Kapoor">Kareena Kapoor</option>
+    <option value="Rishi Kapoor">Rishi Kapoor</option>
+    <option value="nikhil-deshmukh">nikhil-deshmukh</option>
+
+
+    <option value="Naseeruddin Shah">Naseeruddin Shah</option>
+    <option value="Sunny Deol">Sunny Deol</option>
+    <option value="John Abraham">John Abraham</option>
+    <option value="Abhishek Bachchan">Abhishek Bachchan</option>
+    <option value="Dharmendra">Dharmendra</option>
+    <option value="Mithun Chakraborty">Mithun Chakraborty</option>
+    <option value="Tabu">Tabu</option>
+    <option value="Rani Mukerji">Rani Mukerji</option>
+    <option value="Emraan Hashmi">Emraan Hashmi</option>
+    <option value="Priyanka Chopra Jonas">Priyanka Chopra Jonas</option>
+    <option value="Irrfan Khan">Irrfan Khan</option>
+    <option value="Manoj Bajpayee">Manoj Bajpayee</option>
+    <option value="Madhuri Dixit">Madhuri Dixit</option>
+    <option value="Katrina Kaif">Katrina Kaif</option>
+    <option value="Shahid Kapoor">Shahid Kapoor</option>
+    <option value="Deepika Padukone">Deepika Padukone</option>
+    <option value="Suniel Shetty">Suniel Shetty</option>
+    <option value="Rajesh Khanna">Rajesh Khanna</option>
+    <option value="Aamir Khan">Aamir Khan</option>
+    <option value="Rajkummar Rao">Rajkummar Rao</option>
+    <option value="Om Puri">Om Puri</option>
+    <option value="Nawazuddin Siddiqui">Nawazuddin Siddiqui</option>
+    <option value="Juhi Chawla">Juhi Chawla</option>
+    <option value="Amrish Puri">Amrish Puri</option>
+    <option value="Riteish Deshmukh">Riteish Deshmukh</option>
+    <option value="Govinda">Govinda</option>
+    <option value="Bobby Deol">Bobby Deol</option>
+    <option value="Nana Patekar">Nana Patekar</option>
+    <option value="Karisma Kapoor">Karisma Kapoor</option>
+    <option value="Shabana Azmi">Shabana Azmi</option>
+    <option value="Hrithik Roshan">Hrithik Roshan</option>
+    <option value="Shraddha Kapoor">Shraddha Kapoor</option>
+    <option value="Aishwarya Rai Bachchan">Aishwarya Rai Bachchan</option>
+    <option value="Arjun Rampal">Arjun Rampal</option>
+    <option value="Bipasha Basu">Bipasha Basu</option>
+    <option value="Kangana Ranaut">Kangana Ranaut</option>
+    <option value="Kay Kay Menon">Kay Kay Menon</option>
+    <option value="Vinod Khanna">Vinod Khanna</option>
+    <option value="Manisha Koirala">Manisha Koirala</option>
+    <option value="Arshad Warsi">Arshad Warsi</option>
+    <option value="Prem Chopra">Prem Chopra</option>
+    <option value="Akshaye Khanna">Akshaye Khanna</option>
+    <option value="Vidya Balan">Vidya Balan</option>
+    <option value="Ranbir Kapoor">Ranbir Kapoor</option>
+    <option value="Ranveer Singh">Ranveer Singh</option>
+    <option value="Kajol">Kajol</option>
+    <option value="Vivek Oberoi">Vivek Oberoi</option>
+    <option value="Gulshan Grover">Gulshan Grover</option>
+    <option value="Sonakshi Sinha">Sonakshi Sinha</option>
+    <option value="Raveena Tandon">Raveena Tandon</option>
+    <option value="Taapsee Pannu">Taapsee Pannu</option>
+    <option value="Boman Irani">Boman Irani</option>
+    <option value="Hema Malini">Hema Malini</option>
+    <option value="Jacqueline Fernandez">Jacqueline Fernandez</option>
+    <option value="Randeep Hooda">Randeep Hooda</option>
+    <option value="Kriti Sanon">Kriti Sanon</option>
+    <option value="Preity G Zinta">Preity G Zinta</option>
+    <option value="Jimmy Shergill">Jimmy Shergill</option>
+    <option value="Rakhee Gulzar">Rakhee Gulzar</option>
+    <option value="Shakti Kapoor">Shakti Kapoor</option>
+    <option value="Varun Dhawan">Varun Dhawan</option>
+    <option value="Kiara Advani">Kiara Advani</option>
+    <option value="Rakul Preet Singh">Rakul Preet Singh</option>
+    <option value="Ayushmann Khurrana">Ayushmann Khurrana</option>
+    <option value="Dimple Kapadia">Dimple Kapadia</option>
+    <option value="Anushka Sharma">Anushka Sharma</option>
+    <option value="Waheeda Rehman">Waheeda Rehman</option>
+    <option value="Pankaj Tripathi">Pankaj Tripathi</option>
+    <option value="Lara Dutta">Lara Dutta</option>
+    <option value="Rekha">Rekha</option>
+    <option value="Konkona Sen Sharma">Konkona Sen Sharma</option>
+    <option value="Govardhan Asrani">Govardhan Asrani</option>
+    <option value="Sonam Kapoor">Sonam Kapoor</option>
+    <option value="Vijay Raaz">Vijay Raaz</option>
+    <option value="Sridevi">Sridevi</option>
+    <option value="Alia Bhatt">Alia Bhatt</option>
+    <option value="Jaaved Jaaferi">Jaaved Jaaferi</option>
+    <option value="Zeenat Aman">Zeenat Aman</option>
+    <option value="Arjun Kapoor">Arjun Kapoor</option>
+    <option value="Jaya Bachchan">Jaya Bachchan</option>
+    <option value="Radhika Apte">Radhika Apte</option>
+    <option value="Kumud Mishra">Kumud Mishra</option>
+    <option value="Bhumi Pednekar">Bhumi Pednekar</option>
+    <option value="Saurabh Shukla">Saurabh Shukla</option>
+    <option value="Vicky Kaushal">Vicky Kaushal</option>
+    <option value="Rajinikanth">Rajinikanth</option>
+    <option value="Ashutosh Rana">Ashutosh Rana</option>
+    
+            </select>
+            <button type="button" class="remove-btn" onclick="removeFilter('cast')">✖</button><br>
+        </div>
+        
+        <div id="directorContainer" class="input-container">
+            <label for="director">Favorite Director:</label>
+            <select id="director" name="director">
+                <option value="None">Select Director</option>
+                <option value="David Dhawan">David Dhawan</option>
+    <option value="Priyadarshan">Priyadarshan</option>
+    <option value="Ram Gopal Varma">Ram Gopal Varma</option>
+    <option value="Anurag Kashyap">Anurag Kashyap</option>
+    <option value="Mahesh Bhatt">Mahesh Bhatt</option>
+    <option value="Abbas Alibhai Burmawalla">Abbas Alibhai Burmawalla</option>
+    <option value="Yash Chopra">Yash Chopra</option>
+    <option value="Rohit Shetty">Rohit Shetty</option>
+    <option value="Vikram Bhatt">Vikram Bhatt</option>
+    <option value="Rajkumar Santoshi">Rajkumar Santoshi</option>
+    <option value="Indra Kumar">Indra Kumar</option>
+    <option value="Mohit Suri">Mohit Suri</option>
+    <option value="Subhash Ghai">Subhash Ghai</option>
+    <option value="Hrishikesh Mukherjee">Hrishikesh Mukherjee</option>
+    <option value="Anees Bazmee">Anees Bazmee</option>
+    <option value="Vishal Bhardwaj">Vishal Bhardwaj</option>
+    <option value="Manmohan Desai">Manmohan Desai</option>
+    <option value="Raj Kanwar">Raj Kanwar</option>
+    <option value="Sanjay Leela Bhansali">Sanjay Leela Bhansali</option>
+    <option value="Gulzar">Gulzar</option>
+    <option value="Umesh Mehra">Umesh Mehra</option>
+    <option value="Sanjay Gupta">Sanjay Gupta</option>
+    <option value="Prakash Jha">Prakash Jha</option>
+    <option value="Hansal Mehta">Hansal Mehta</option>
+    <option value="Anurag Basu">Anurag Basu</option>
+    <option value="Anil Sharma">Anil Sharma</option>
+    <option value="Ramesh Sippy">Ramesh Sippy</option>
+    <option value="Madhur Bhandarkar">Madhur Bhandarkar</option>
+    <option value="Prabhu Deva">Prabhu Deva</option>
+    <option value="Siddharth Anand">Siddharth Anand</option>
+    <option value="Vidhu Vinod Chopra">Vidhu Vinod Chopra</option>
+    <option value="Nikkhil Advani">Nikkhil Advani</option>
+    <option value="Vivek Agnihotri">Vivek Agnihotri</option>
+    <option value="Imtiaz Ali">Imtiaz Ali</option>
+    <option value="Sooraj R. Barjatya">Sooraj R. Barjatya</option>
+    <option value="Satish Kaushik">Satish Kaushik</option>
+    <option value="Anubhav Sinha">Anubhav Sinha</option>
+    <option value="R. Balki">R. Balki</option>
+    <option value="Rakesh Roshan">Rakesh Roshan</option>
+    <option value="Zoya Akhtar">Zoya Akhtar</option>
+    <option value="Ketan Mehta">Ketan Mehta</option>
+    <option value="Sujoy Ghosh">Sujoy Ghosh</option>
+    <option value="Ali Abbas Zafar">Ali Abbas Zafar</option>
+    <option value="Kabir Khan">Kabir Khan</option>
+    <option value="Kanti Shah">Kanti Shah</option>
+    <option value="Karan Johar">Karan Johar</option>
+    <option value="Ashutosh Gowariker">Ashutosh Gowariker</option>
+    <option value="Raj Kapoor">Raj Kapoor</option>
+    <option value="Tigmanshu Dhulia">Tigmanshu Dhulia</option>
+    <option value="Vikas Bahl">Vikas Bahl</option>
+    <option value="Vijay Anand">Vijay Anand</option>
+    <option value="Shaad Ali">Shaad Ali</option>
+    <option value="Rakeysh Omprakash Mehra">Rakeysh Omprakash Mehra</option>
+    <option value="Shyam Ramsay">Shyam Ramsay</option>
+    <option value="Milan Luthria">Milan Luthria</option>
+    <option value="Sudhir Mishra">Sudhir Mishra</option>
+    <option value="J.P. Dutta">J.P. Dutta</option>
+    <option value="Remo D'Souza">Remo D'Souza</option>
+    <option value="Abhishek Sharma">Abhishek Sharma</option>
+    <option value="Shoojit Sircar">Shoojit Sircar</option>
+    <option value="Sohail Khan">Sohail Khan</option>
+    <option value="Raj Khosla">Raj Khosla</option>
+    <option value="Dibakar Banerjee">Dibakar Banerjee</option>
+    <option value="Luv Ranjan">Luv Ranjan</option>
+    <option value="Rahul Rawail">Rahul Rawail</option>
+    <option value="Rajkumar Hirani">Rajkumar Hirani</option>
+    <option value="Suneel Darshan">Suneel Darshan</option>
+    <option value="Aanand L. Rai">Aanand L. Rai</option>
+    <option value="Shyam Benegal">Shyam Benegal</option>
+    <option value="Guddu Dhanoa">Guddu Dhanoa</option>
+    <option value="Sriram Raghavan">Sriram Raghavan</option>
+    <option value="Shakti Samanta">Shakti Samanta</option>
+    <option value="N. Chandra">N. Chandra</option>
+    <option value="Rama Rao Tatineni">Rama Rao Tatineni</option>
+    <option value="Bejoy Nambiar">Bejoy Nambiar</option>
+    <option value="Kunal Kohli">Kunal Kohli</option>
+    <option value="Nitin Kakkar">Nitin Kakkar</option>
+    <option value="Maneesh Sharma">Maneesh Sharma</option>
+    <option value="Prawaal Raman">Prawaal Raman</option>
+    <option value="Sajid Khan">Sajid Khan</option>
+    <option value="Prakash Mehra">Prakash Mehra</option>
+    <option value="Ahmed Khan">Ahmed Khan</option>
+    <option value="Umesh Shukla">Umesh Shukla</option>
+    <option value="Raj Kumar Gupta">Raj Kumar Gupta</option>
+    <option value="Mukul Anand">Mukul Anand</option>
+    <option value="Farhan Akhtar">Farhan Akhtar</option>
+    <option value="Vipul Amrutlal Shah">Vipul Amrutlal Shah</option>
+    <option value="Abhishek Kapoor">Abhishek Kapoor</option>
+    <option value="A.R. Murugadoss">A.R. Murugadoss</option>
+    <option value="Aziz Mirza">Aziz Mirza</option>
+    <option value="Manish Gupta">Manish Gupta</option>
+    <option value="Nishikant Kamat">Nishikant Kamat</option>
+    <option value="Bimal Roy">Bimal Roy</option>
+    <option value="Rajiv Rai">Rajiv Rai</option>
+    <option value="Krishna D.K.">Krishna D.K.</option>
+    <option value="Dharmesh Darshan">Dharmesh Darshan</option>
+    <option value="Vikramaditya Motwane">Vikramaditya Motwane</option>
+    <option value="Mahesh Manjrekar">Mahesh Manjrekar</option>
+    <option value="Kamal Haasan">Kamal Haasan</option>
+    <option value="Kookie Gulati">Kookie Gulati</option>
+    
+               </select>
+            <button type="button" class="remove-btn" onclick="removeFilter('director')">✖</button><br>
+        </div>
+        
+        
+        <button type="submit" id="FinalButton1"   >Get Recommendations</button>
+
+    </form>
+
+  
+
+
+  
+    <hr width="100%;" color="red" size="4">
+    
+            <div id="result-overlay">
+
+
+                <div id="close-btn">&times;</div>
+                {% if movies_info %}
+               
+                <div class="movies-container" >
+                    
+                    {% for movie_info in movies_info %}
+                   
+                        <div class="movie">
+                            <strong> <p>{{movie_info[0]}}</p> </strong>
+                            <p>{{movie_info[1]}}</p>
+                            <strong> <p>{{movie_info[2]}}</p> </strong>
+                            <p>{{movie_info[3]}}</p>
+                            <strong> <p>{{movie_info[4]}}</p> </strong>
+                            <p>{{movie_info[5]}}</p>
+                            <strong> <p>{{movie_info[6]}}</p> </strong>
+                            <p>{{movie_info[7]}}</p>
+                            <strong> <p>{{movie_info[8]}}</p> </strong>
+                            <p>{{movie_info[9]}}</p>
+                            
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+                    
+                
+                {% else %}
+                    <p>GIVE ME INPUT   </p>
+                {% endif %}
+            </div>
+      
+            <hr width="100%;" color="red" size="4">
+
+   
+ 
+
+  
+    
+   <div id="BYMOVIE"> 
+   
+    <h2 class="headline"> Get Movie Suggestions Based on Your Favorite Movie   </h2> </div>
+    <hr width="100%;" color="red" size="4">
+
+
+    <form id="recommendationForm" method="post" action="/tell">
+
+        <h4 style="text-align: center;"> Tell us your favourite Movie</h4>
+    
+
+       
+
+
+        <label for="movie">Favorite Director:</label>
+        <select id="movie" name="movie">
+            <option value="Guest iin London">Guest iin London</option>
+<option value="Vikram Vedha">Vikram Vedha</option>
+<option value="Dulhan Hum Le Jayenge">Dulhan Hum Le Jayenge</option>
+<option value="Gumnaam">Gumnaam</option>
+<option value="Gulaab Gang">Gulaab Gang</option>
+<option value="Paar">Paar</option>
+<option value="Ittefaq">Ittefaq</option>
+<option value="Don">Don</option>
+<option value="Baiju Bawra">Baiju Bawra</option>
+<option value="Bhoot and Friends">Bhoot and Friends</option>
+<option value="Salaam Bombay!">Salaam Bombay!</option>
+<option value="Sharaabi">Sharaabi</option>
+<option value="India's Most Wanted">India's Most Wanted</option>
+<option value="Lucky: No Time for Love">Lucky: No Time for Love</option>
+<option value="Hero">Hero</option>
+<option value="Bhaag Milkha Bhaag">Bhaag Milkha Bhaag</option>
+<option value="Lajja">Lajja</option>
+<option value="Dhokha: Round D Corner">Dhokha: Round D Corner</option>
+<option value="Pizza">Pizza</option>
+<option value="Mirzya">Mirzya</option>
+<option value="Thappad">Thappad</option>
+<option value="Qala">Qala</option>
+<option value="Angry Young Men">Angry Young Men</option>
+<option value="Ghayal Once Again">Ghayal Once Again</option>
+<option value="Baap Beti">Baap Beti</option>
+<option value="Shamshera">Shamshera</option>
+<option value="Untitled Soorarai Pottru remake">Untitled Soorarai Pottru remake</option>
+<option value="Johnny Gaddaar">Johnny Gaddaar</option>
+<option value="Laal Rang">Laal Rang</option>
+<option value="The Crew">The Crew</option>
+<option value="Baabul">Baabul</option>
+<option value="Yudhra">Yudhra</option>
+<option value="Chocolate: Deep Dark Secrets">Chocolate: Deep Dark Secrets</option>
+<option value="Maa Beta">Maa Beta</option>
+<option value="Raat">Raat</option>
+<option value="Phir Hera Pheri">Phir Hera Pheri</option>
+<option value="Thunivu">Thunivu</option>
+<option value="Sehra">Sehra</option>
+<option value="Yeh Lamhe Judaai Ke">Yeh Lamhe Judaai Ke</option>
+<option value="Free Entry">Free Entry</option>
+<option value="Saajan">Saajan</option>
+<option value="Dostana">Dostana</option>
+<option value="Chhota Bheem aur Krishna: Mayanagari">Chhota Bheem aur Krishna: Mayanagari</option>
+<option value="Laal Kaptaan">Laal Kaptaan</option>
+<option value="Play Girls">Play Girls</option>
+<option value="Corporate">Corporate</option>
+<option value="Acting Ka Bhoot">Acting Ka Bhoot</option>
+<option value="Sssshhh...">Sssshhh...</option>
+<option value="Shor">Shor</option>
+<option value="Pati Patni Aur Woh">Pati Patni Aur Woh</option>
+<option value="Dil Dhadakne Do">Dil Dhadakne Do</option>
+<option value="All the Best: Fun Begins">All the Best: Fun Begins</option>
+<option value="Samrat Prithviraj">Samrat Prithviraj</option>
+<option value="Gulabo Sitabo">Gulabo Sitabo</option>
+<option value="Mimi">Mimi</option>
+<option value="Daud: Fun on the Run">Daud: Fun on the Run</option>
+<option value="Krrish 3">Krrish 3</option>
+<option value="Shanghai">Shanghai</option>
+<option value="Laxmii">Laxmii</option>
+<option value="Bellbottom">Bellbottom</option>
+<option value="Kisna: The Warrior Poet">Kisna: The Warrior Poet</option>
+<option value="Choked: Paisa Bolta Hai">Choked: Paisa Bolta Hai</option>
+<option value="Bhaagamathie Full Hindi Dubbed Movie">Bhaagamathie Full Hindi Dubbed Movie</option>
+<option value="Mission Mangal">Mission Mangal</option>
+<option value="Parivaar">Parivaar</option>
+<option value="Lomad">Lomad</option>
+<option value="Zubeidaa">Zubeidaa</option>
+<option value="Ishq-e-nadaan">Ishq-e-nadaan</option>
+<option value="Qayamat: City Under Threat">Qayamat: City Under Threat</option>
+<option value="Khooni Mahal">Khooni Mahal</option>
+<option value="Arjun Patiala">Arjun Patiala</option>
+<option value="Salaam Venky">Salaam Venky</option>
+<option value="Non Stop Dhamaal">Non Stop Dhamaal</option>
+<option value="Ram-Avtar">Ram-Avtar</option>
+<option value="Simran">Simran</option>
+<option value="NH10">NH10</option>
+<option value="Chup Chup Ke">Chup Chup Ke</option>
+<option value="Khamosh">Khamosh</option>
+<option value="Raktneeti">Raktneeti</option>
+<option value="F.A.L.T.U">F.A.L.T.U</option>
+<option value="Khushboo">Khushboo</option>
+<option value="Krrish 4">Krrish 4</option>
+<option value="420 IPC">420 IPC</option>
+<option value="Anokha Bandhan">Anokha Bandhan</option>
+<option value="Virgin Bhanupriya">Virgin Bhanupriya</option>
+<option value="Phillauri">Phillauri</option>
+<option value="Luck">Luck</option>
+<option value="B.A. Pass 3">B.A. Pass 3</option>
+<option value="Yaadein...">Yaadein...</option>
+<option value="Yeh Ballet">Yeh Ballet</option>
+<option value="August 16 1947">August 16 1947</option>
+<option value="Tere Mere Sapne">Tere Mere Sapne</option>
+<option value="Paltan">Paltan</option>
+<option value="Padmaavat">Padmaavat</option>
+<option value="Dostana 2">Dostana 2</option>
+<option value="Jigar">Jigar</option>
+<option value="Gharwali Baharwali">Gharwali Baharwali</option>
+<option value="Kuselan">Kuselan</option>
+<option value="Kaal">Kaal</option>
+<option value="Matru Ki Bijlee Ka Mandola">Matru Ki Bijlee Ka Mandola</option>
+         </select>
+      
+   
+
+    <button type="submit" id="FinalButton2">Get Recommendations</button>
+    </form>
+
+
+    
+
+
+    <div id="result-overlay2">
+
+        <div id="close-btn2">&times;</div>
+
+
+        {% if result %}
+        <div class="movies-container">
+            {% for movie_info in result %}
+                <div class="movie">
+                    {% for i in range(0, movie_info|length, 2) %}
+                        <strong><p>{{ movie_info[i] }}</p></strong>
+                        <p>{{ movie_info[i + 1] if i + 1 < movie_info|length else '' }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        
+    {% else %}
+        <p>GIVE ME INPUT</p>
+    {% endif %}
+
+
+    </div>
+
+
+  
+
+          
+   
+ 
+        
+    
+
+    <script>
+
+        function toggleInput(containerId) {
+            const container = document.getElementById(containerId);
+            container.style.display = container.style.display === "none" || container.style.display === "" ? "block" : "none";
+        }
+
+        function removeFilter(filterId) {
+            const input = document.getElementById(filterId);
+            input.value = 'none';
+            input.parentElement.style.display = 'none';
+        }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('result-overlay');
+    var modal2 = document.getElementById('result-overlay2');
+    
+    var closeBtn = document.getElementById('close-btn');
+    var closeBtn2 = document.getElementById('close-btn2');
+
+
+
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+
+    if (closeBtn2) {
+        closeBtn2.addEventListener('click', function() {
+            modal2.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+
+
+
+        function removeFilter(containerId) {
+            var container = document.getElementById(containerId + 'Container');
+            container.style.display = 'none';
+        }
+
+
+       
+        // Check if the condition is true and call the function
+        {% if movies_info %}
+            document.addEventListener('DOMContentLoaded', (event) => {
+                var element = document.getElementById('result-overlay');
+           
+                element.style.display = 'block'; // Display the container
+                element.scrollIntoView({ behavior: 'smooth' });
+            });
+        {% endif %}
+
+        {% if result  %}
+            document.addEventListener('DOMContentLoaded', (event) => {
+                var element = document.getElementById('result-overlay2');
+           
+                element.style.display = 'block'; // Display the container
+                element.scrollIntoView({ behavior: 'smooth' });
+            });
+        {% endif %}
+
+        function scrollToSection(id) {
+            var element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+    
+
+    </script>
+</body>
+</html>
