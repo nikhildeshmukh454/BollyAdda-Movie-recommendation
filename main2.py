@@ -31,7 +31,10 @@ class Filter:
                 self.update_dic(index, row['cast'])
             if self.Genre != "none" and self.Genre in row['genre']:
                 self.update_dic(index, row['cast'])
+            if self.Director != "none" and self.Director in row['director']:
+                self.update_dic(index, row['cast'])
 
+            
         sorted_dic = sorted(self.Dic.items(), key=lambda x: x[1], reverse=True)
         top_movies = [
             (
